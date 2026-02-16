@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetSocial - Conectando Amantes de Pets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        nav {
+            background-color: #4a8fe7;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .login-form, .register-form {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #4a8fe7;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #4a8fe7;
+            outline: none;
+        }
+        
+        .btn {
+            background-color: #4a8fe7;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3a7fd7;
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .form-footer a {
+            color: #4a8fe7;
+            text-decoration: none;
+        }
+        
+        /* Feed de notícias */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 2.5fr 1fr;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-bottom: 15px;
+            color: #4a8fe7;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar-menu a {
+            display: block;
+            padding: 12px 10px;
+            text-decoration: none;
+            color: #555;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar-menu a:hover {
+            background-color: #f5f5f5;
+            color: #4a8fe7;
+        }
+        
+        .sidebar-menu a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .feed {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .post {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+        
+        .post-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .post-user {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .post-time {
+            font-size: 14px;
+            color: #777;
+            margin-top: 3px;
+        }
+        
+        .post-content {
+            margin-bottom: 15px;
+        }
+        
+        .post-image {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            max-height: 500px;
+            object-fit: cover;
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 15px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #555;
+            cursor: pointer;
+            padding: 8px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .post-action:hover {
+            background-color: #f5f5f5;
+        }
+        
+        /* Adoption section */
+        .adoption-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .adoption-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .adoption-info {
+            padding: 15px;
+        }
+        
+        .adoption-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #4a8fe7;
+        }
+        
+        .adoption-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .adoption-contact {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .adoption-btn {
+            background-color: #4a8fe7;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .adoption-btn:hover {
+            background-color: #3a7fd7;
+        }
+        
+        .create-post {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .create-post-input {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .create-post-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #ddd;
+        }
+        
+        .create-post-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .create-post-box {
+            background-color: #f5f5f5;
+            flex-grow: 1;
+            padding: 12px 15px;
+            border-radius: 20px;
+            border: none;
+            color: #555;
+            font-size: 16px;
+        }
+        
+        .create-post-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .create-post-type {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .create-post-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .create-post-option:hover {
+            background-color: #f5f5f5;
+        }
+        
+        /* User profile section */
+        .profile-header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .profile-cover {
+            height: 200px;
+            background-color: #4a8fe7;
+            margin: -30px;
+            margin-bottom: 0;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+        }
+        
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: white;
+            border: 5px solid white;
+            position: absolute;
+            bottom: -75px;
+            left: 30px;
+            overflow: hidden;
+        }
+        
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-info {
+            margin-top: 90px;
+            margin-left: 180px;
+        }
+        
+        .profile-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .profile-username {
+            color: #777;
+            margin-bottom: 15px;
+        }
+        
+        .profile-bio {
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #555;
+        }
+        
+        .profile-stats {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .profile-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .profile-stat-count {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .profile-stat-label {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .profile-actions {
+            position: absolute;
+            top: 220px;
+            right: 30px;
+        }
+        
+        .profile-edit-btn {
+            background-color: #f5f5f5;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .profile-edit-btn:hover {
+            background-color: #e5e5e5;
+        }
+        
+        .profile-tabs {
+            display: flex;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .profile-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+        
+        .profile-tab.active {
+            background-color: #4a8fe7;
+            color: white;
+        }
+        
+        .profile-tab:hover:not(.active) {
+            background-color: #f5f5f5;
+        }
+        
+        .profile-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+    <!-- Feed de notícias (após login) -->
+    <div id="feed-page">
+        <nav>
+            <a href="pet-social-network.html" class="logo">
+                <i class="fas fa-paw"></i>
+                PetSocial
+            </a>
+            <div class="nav-links">
+                <a href="pet-social-network.html">Feed</a>
+                <a href="#" onclick="showAdoption()">Adoção</a>
+                <a href="petsocial-meu-perfil.html">Perfil</a>
+                <a href="messages.html">Mensagens</a>
+                <a href="#" onclick="logout()">Sair</a>
+            </div>
+        </nav>
+        
+        <div class="container">
+            <div class="sidebar">
+                <h3>Menu</h3>
+                <div class="sidebar-menu">
+                    <a href="#" onclick="showFeed()"><i class="fas fa-home"></i> Feed</a>
+                    <a href="#" onclick="showAdoption()"><i class="fas fa-heart"></i> Adoção</a>
+                    <a href="#" onclick="showProfile()"><i class="fas fa-user"></i> Meu Perfil</a>
+                    <a href="#"><i class="fas fa-bell"></i> Notificações</a>
+                    <a href="#"><i class="fas fa-envelope"></i> Mensagens</a>
+                    <a href="#"><i class="fas fa-cog"></i> Configurações</a>
+                </div>
+                
+                <h3 style="margin-top: 30px;">Adoções Recentes</h3>
+                <div class="adoption-card">
+                    <img src="/images/3x4_gatinha_luna_de_6_meses_sendo_en.png" alt="placeholder" class="adoption-image">
+                    <div class="adoption-info">
+                        <div class="adoption-title">Luna - Gatinha 6 meses</div>
+                        <div class="adoption-location">
+                            <i class="fas fa-map-marker-alt"></i> São Paulo, SP
+                        </div>
+                        <div class="adoption-contact">
+                            <button class="adoption-btn">Ver mais</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feed" id="feed-content">
+                <div class="create-post">
+                    <div class="create-post-input">
+                        <div class="create-post-avatar">
+                            <img src="/images/usuario.png" alt="placeholder">
+                        </div>
+                        <input type="text" class="create-post-box" placeholder="O que seu pet está fazendo hoje?">
+                    </div>
+                    <div class="create-post-actions">
+                        <div class="create-post-type">
+                            <div class="create-post-option">
+                                <i class="fas fa-image" style="color: #4CAF50;"></i>
+                                <span>Foto</span>
+                            </div>
+                            <div class="create-post-option">
+                                <i class="fas fa-video" style="color: #2196F3;"></i>
+                                <span>Vídeo</span>
+                            </div>
+                            <div class="create-post-option">
+                                <i class="fas fa-paw" style="color: #FF9800;"></i>
+                                <span>Adoção</span>
+                            </div>
+                        </div>
+                        <button class="adoption-btn">Publicar</button>
+                    </div>
+                </div>
+                
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">
+                            <img src="/images/3x2_gere_um_usu_rio_para_coloca_em_p (2).png" alt="placeholder">
+                        </div>
+                        <div>
+                            <div class="post-user">Maria Silva</div>
+                            <div class="post-time">Há 2 horas</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Thor adora brincar com a nova bolinha que comprei! 🐶💙</p>
+                    </div>
+                    <img src="/images/3x2_uma_cachorra_brincando_com_uma_b.png" alt="placeholder" class="post-image">
+                    <div class="post-actions">
+                        <div class="post-action">
+                            <i class="far fa-heart"></i>
+                            <span>Curtir (24)</span>
+                        </div>
+                        <div class="post-action">
+                            <i class="far fa-comment"></i>
+                            <span>Comentar (5)</span>
+                        </div>
+                        <div class="post-action">
+                            <i class="fas fa-share"></i>
+                            <span>Compartilhar</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">
+                            <img src="/images/3x2_gere_um_usu_rio_para_coloca_em_p (1).png" alt="placeholder">
+                        </div>
+                        <div>
+                            <div class="post-user">João Santos</div>
+                            <div class="post-time">Há 5 horas</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Minha gata Mia dormindo em mais um lugar improvável. Alguém mais tem um gato assim? 😂</p>
+                    </div>
+                    <img src="/images/3x2_gatinha_dormindo_em_um_lugar_imp.png" alt="placeholder" class="post-image">
+                    <div class="post-actions">
+                        <div class="post-action">
+                            <i class="far fa-heart"></i>
+                            <span>Curtir (45)</span>
+                        </div>
+                        <div class="post-action">
+                            <i class="far fa-comment"></i>
+                            <span>Comentar (12)</span>
+                        </div>
+                        <div class="post-action">
+                            <i class="fas fa-share"></i>
+                            <span>Compartilhar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feed" id="adoption-content" style="display: none;">
+                <div class="create-post">
+                    <div class="create-post-input">
+                        <div class="create-post-avatar">
+                            <img src="/api/placeholder/100/100" alt="placeholder">
+                        </div>
+                        <input type="text" class="create-post-box" placeholder="Publicar um pet para adoção...">
+                    </div>
+                    <div class="create-post-actions">
+                        <div class="create-post-type">
+                            <div class="create-post-option">
+                                <i class="fas fa-image" style="color: #4CAF50;"></i>
+                                <span>Adicionar fotos</span>
+                            </div>
+                            <div class="create-post-option">
+                                <i class="fas fa-map-marker-alt" style="color: #F44336;"></i>
+                                <span>Localização</span>
+                            </div>
+                        </div>
+                        <button class="adoption-btn">Publicar</button>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                    <div class="adoption-card">
+                        <img src="/api/placeholder/400/320" alt="placeholder" class="adoption-image">
+                        <div class="adoption-info">
+                            <div class="adoption-title">Max - Cachorro 2 anos</div>
+                            <div class="adoption-location">
+                                <i class="fas fa-map-marker-alt"></i> Rio de Janeiro, RJ
+                            </div>
+                            <p style="margin: 10px 0; font-size: 14px;">Max é um cachorro dócil e brincalhão, castrado e vacinado. Ótimo com crianças!</p>
+                            <div class="adoption-contact">
+                                <button class="adoption-btn">Quero adotar</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="adoption-card">
+                        <img src="/api/placeholder/400/320" alt="placeholder" class="adoption-image">
+                        <div class="adoption-info">
+                            <div class="adoption-title">Luna - Gatinha 6 meses</div>
+                            <div class="adoption-location">
+                                <i class="fas fa-map-marker-alt"></i> São Paulo, SP
+                            </div>
+                            <p style="margin: 10px 0; font-size: 14px;">Luna é uma gatinha muito carinhosa e brincalhona. Já está castrada e vacinada.</p>
+                            <div class="adoption-contact">
+                                <button class="adoption-btn">Quero adotar</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="adoption-card">
+                        <img src="/api/placeholder/400/320" alt="placeholder" class="adoption-image">
+                        <div class="adoption-info">
+                            <div class="adoption-title">Bob - Cachorro 4 anos</div>
+                            <div class="adoption-location">
+                                <i class="fas fa-map-marker-alt"></i> Belo Horizonte, MG
+                            </div>
+                            <p style="margin: 10px 0; font-size: 14px;">Bob é um cão de porte médio, tranquilo e companheiro. Ótimo para apartamentos.</p>
+                            <div class="adoption-contact">
+                                <button class="adoption-btn">Quero adotar</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="adoption-card">
+                        <img src="/api/placeholder/400/320" alt="placeholder" class="adoption-image">
+                        <div class="adoption-info">
+                            <div class="adoption-title">Nina - Gata 1 ano</div>
+                            <div class="adoption-location">
+                                <i class="fas fa-map-marker-alt"></i> Fortaleza, CE
+                            </div>
+                            <p style="margin: 10px 0; font-size: 14px;">Nina é uma gata calma e independente. Já está castrada e com todas as vacinas em dia.</p>
+                            <div class="adoption-contact">
+                                <button class="adoption-btn">Quero adotar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feed" id="profile-content" style="display: none;">
+                <div class="profile-header">
+                    <div class="profile-cover"></div>
+                    <div class="profile-avatar">
+                        <img src="/api/placeholder/200/200" alt="placeholder">
+                    </div>
+                    <div class="profile-info">
+                        <h2 class="profile-name">Maria Silva</h2>
+                        <div class="profile-username">@mariasilva</div>
+                        <p class="profile-bio">Amante de animais 🐶❤️ Tutora do Thor e da Mel. Compartilhando momentos especiais com meus pets!</p>
+                        <div class="profile-stats">
+                            <div class="profile-stat">
+                                <div class="profile-stat-count">152</div>
+                                <div class="profile-stat-label">Posts</div>
+                            </div>
+                            <div class="profile-stat">
+                                <div class="profile-stat-count">842</div>
+                                <div class="profile-stat-label">Seguidores</div>
+                            </div>
+                            <div class="profile-stat">
+                                <div class="profile-stat-count">267</div>
+                                <div class="profile-stat-label">Seguindo</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="profile-edit-btn">Editar perfil</button>
+                    </div>
+                </div>
+                
+                <div class="profile-tabs">
+                    <div class="profile-tab active">Fotos</div>
+                    <div class="profile-tab">Vídeos</div>
+                    <div class="profile-tab">Adoções</div>
+                </div>
+                
+                <div class="profile-gallery">
+                    <div class="gallery-item">
+                        <img src="/api/placeholder/400/400" alt="placeholder" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/api/placeholder/400/400" alt="placeholder" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/api/placeholder/400/400" alt="placeholder" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/api/placeholder/400/400" alt="placeholder" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/api/placeholder/400/400" alt="placeholder" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/api/placeholder/400/400" alt="placeholder" class="gallery-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Funções SPA para alternar entre as seções
+        function showFeed() {
+            document.getElementById('feed-content').style.display = 'flex';
+            document.getElementById('adoption-content').style.display = 'none';
+            document.getElementById('profile-content').style.display = 'none';
+            
+            // Atualizar menu ativo
+            updateActiveMenu('feed');
+        }
+        
+        function showAdoption() {
+            document.getElementById('feed-content').style.display = 'none';
+            document.getElementById('adoption-content').style.display = 'block';
+            document.getElementById('profile-content').style.display = 'none';
+            
+            // Atualizar menu ativo
+            updateActiveMenu('adoption');
+        }
+        
+        function showProfile() {
+            document.getElementById('feed-content').style.display = 'none';
+            document.getElementById('adoption-content').style.display = 'none';
+            document.getElementById('profile-content').style.display = 'block';
+            
+            // Atualizar menu ativo
+            updateActiveMenu('profile');
+            
+            // Carregar dados do perfil
+            loadProfileData();
+        }
+        
+        function updateActiveMenu(section) {
+            // Remover classe ativa de todos os links do menu
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
+                link.style.backgroundColor = '';
+                link.style.color = '#555';
+            });
+            
+            // Adicionar classe ativa ao link selecionado
+            let activeLink;
+            switch(section) {
+                case 'feed':
+                    activeLink = document.querySelector('a[onclick="showFeed()"]');
+                    break;
+                case 'adoption':
+                    activeLink = document.querySelector('a[onclick="showAdoption()"]');
+                    break;
+                case 'profile':
+                    activeLink = document.querySelector('a[onclick="showProfile()"]');
+                    break;
+            }
+            
+            if (activeLink) {
+                activeLink.style.backgroundColor = '#f0f7ff';
+                activeLink.style.color = '#4a8fe7';
+            }
+        }
+        
+        // Função para carregar dados do usuário logado
+        function loadUserData() {
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            
+            if (currentUser) {
+                // Atualizar nome do usuário no perfil
+                const profileName = document.querySelector('.profile-name');
+                if (profileName) {
+                    profileName.textContent = currentUser.fullName || 'Usuário';
+                }
+                
+                // Atualizar username
+                const profileUsername = document.querySelector('.profile-username');
+                if (profileUsername) {
+                    profileUsername.textContent = '@' + (currentUser.username || 'usuario');
+                }
+                
+                // Atualizar bio
+                const profileBio = document.querySelector('.profile-bio');
+                if (profileBio) {
+                    profileBio.textContent = currentUser.bio || 'Amante de pets! 🐾';
+                }
+                
+                // Atualizar foto de perfil se existir
+                if (currentUser.profilePhoto) {
+                    const profileAvatars = document.querySelectorAll('.profile-avatar img, .create-post-avatar img');
+                    profileAvatars.forEach(avatar => {
+                        avatar.src = currentUser.profilePhoto;
+                    });
+                }
+                
+                // Atualizar nome no create post
+                const createPostBox = document.querySelector('.create-post-box');
+                if (createPostBox) {
+                    createPostBox.placeholder = `O que ${currentUser.petName || 'seu pet'} está fazendo hoje?`;
+                }
+            }
+        }
+        
+        // Função para carregar dados do perfil específico
+        function loadProfileData() {
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            
+            if (currentUser) {
+                // Atualizar informações do perfil na seção de perfil
+                const profileName = document.querySelector('#profile-content .profile-name');
+                if (profileName) {
+                    profileName.textContent = currentUser.fullName || 'Usuário';
+                }
+                
+                const profileUsername = document.querySelector('#profile-content .profile-username');
+                if (profileUsername) {
+                    profileUsername.textContent = '@' + (currentUser.username || 'usuario');
+                }
+                
+                const profileBio = document.querySelector('#profile-content .profile-bio');
+                if (profileBio) {
+                    profileBio.textContent = currentUser.bio || 'Amante de pets! 🐾';
+                }
+                
+                // Atualizar foto do perfil
+                const profileAvatar = document.querySelector('#profile-content .profile-avatar img');
+                if (profileAvatar && currentUser.profilePhoto) {
+                    profileAvatar.src = currentUser.profilePhoto;
+                }
+            }
+        }
+        
+        // Função para curtir post
+        function toggleLike(postElement) {
+            const likeIcon = postElement.querySelector('.fa-heart');
+            const likeCount = postElement.querySelector('span');
+            
+            if (likeIcon.classList.contains('far')) {
+                // Curtir
+                likeIcon.classList.remove('far');
+                likeIcon.classList.add('fas');
+                likeIcon.style.color = '#e74c3c';
+                
+                // Incrementar contador
+                const currentCount = parseInt(likeCount.textContent.match(/\d+/)[0]);
+                likeCount.textContent = `Curtir (${currentCount + 1})`;
+            } else {
+                // Descurtir
+                likeIcon.classList.remove('fas');
+                likeIcon.classList.add('far');
+                likeIcon.style.color = '';
+                
+                // Decrementar contador
+                const currentCount = parseInt(likeCount.textContent.match(/\d+/)[0]);
+                likeCount.textContent = `Curtir (${currentCount - 1})`;
+            }
+        }
+        
+        // Função para redirecionar para a página de perfil do usuário
+        function goToProfile() {
+            // Verificar se o usuário está logado
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            
+            if (currentUser) {
+                // Redirecionar para a página de perfil
+                window.location.href = 'petsocial-meu-perfil.html';
+            } else {
+                // Se não estiver logado, redirecionar para a página de login
+                alert('Você precisa estar logado para acessar seu perfil.');
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // Função para realizar logout
+        function logout() {
+            if (confirm('Tem certeza que deseja sair?')) {
+                // Remover dados do usuário da sessão
+                sessionStorage.removeItem('currentUser');
+                sessionStorage.removeItem('currentUserProfile');
+                
+                // Redirecionar para a página de cadastro
+                window.location.href = 'pet-social-signup.html';
+            }
+        }
+        
+        // Adicionar event listeners aos posts
+        function initializePostInteractions() {
+            document.querySelectorAll('.post-action').forEach(action => {
+                action.addEventListener('click', function() {
+                    const postElement = this.closest('.post');
+                    const icon = this.querySelector('i');
+                    
+                    if (icon && icon.classList.contains('fa-heart')) {
+                        toggleLike(postElement);
+                    } else if (icon && icon.classList.contains('fa-comment')) {
+                        // Implementar comentários futuramente
+                        alert('Funcionalidade de comentários em desenvolvimento!');
+                    } else if (icon && icon.classList.contains('fa-share')) {
+                        // Implementar compartilhamento futuramente
+                        alert('Funcionalidade de compartilhamento em desenvolvimento!');
+                    }
+                });
+            });
+        }
+        
+        // Verificar se o usuário está logado ao carregar a página
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
+            
+            if (!currentUser) {
+                // Se não estiver logado, redirecionar para a página de cadastro
+                alert('Você precisa estar logado para acessar a rede social.');
+                window.location.href = 'pet-social-signup.html';
+                return;
+            }
+            
+            // Carregar dados do usuário
+            loadUserData();
+            
+            // Inicializar interações dos posts
+            initializePostInteractions();
+            
+            // Mostrar feed por padrão
+            showFeed();
+        });
+    </script>
