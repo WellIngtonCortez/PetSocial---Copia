@@ -1,0 +1,47 @@
+{
+  "name": "petsocial",
+  "version": "1.0.0",
+  "description": "Rede social completa para amantes de pets com Supabase",
+  "main": "pet-social-network.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "build": "echo 'Build completed - Static files ready for deploy'",
+    "deploy": "vercel --prod",
+    "serve": "npx serve .",
+    "live": "npx live-server --port=8000"
+  },
+  "keywords": [
+    "pets",
+    "social-network",
+    "supabase",
+    "javascript",
+    "html",
+    "css",
+    "adoption",
+    "pets"
+  ],
+  "author": "PetSocial Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SEU-USERNAME/petsocial.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SEU-USERNAME/petsocial/issues"
+  },
+  "homepage": "https://github.com/SEU-USERNAME/petsocial#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}

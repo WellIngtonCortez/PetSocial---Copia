@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetSocial - Entrar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,21 +14,20 @@
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            background: linear-gradient(135deg, #4a8fe7 0%, #ff6b6b 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
         
         nav {
-            background-color: #4a8fe7;
+            background-color: rgba(255, 255, 255, 0.1);
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
         }
         
         .logo {
@@ -68,82 +68,33 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
-        }
-        
-        .left-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-right: 40px;
-        }
-        
-        .right-section {
-            flex: 1;
-            display: flex;
-            justify-content: center;
             align-items: center;
         }
         
-        .app-title {
-            font-size: 36px;
-            font-weight: bold;
-            color: #4a8fe7;
-            margin-bottom: 20px;
+        .login-form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 400px;
+            margin: 0 auto;
         }
         
-        .app-description {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
-        .features {
-            margin-bottom: 30px;
-        }
-        
-        .feature {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .feature i {
-            width: 40px;
-            height: 40px;
-            background-color: #e6f0ff;
-            color: #4a8fe7;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            font-size: 18px;
-        }
-        
-        .feature-text {
-            font-size: 16px;
-            color: #444;
-        }
-        
-        .login-form {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .form-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #4a8fe7;
+        .form-header {
             text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
+        }
+        
+        .form-header h2 {
+            color: #4a8fe7;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .form-header p {
+            color: #666;
+            font-size: 14px;
         }
         
         .form-group {
@@ -154,87 +105,38 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: #444;
+            color: #333;
         }
         
         .form-group input {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
             font-size: 16px;
             transition: border-color 0.3s;
         }
         
         .form-group input:focus {
-            border-color: #4a8fe7;
             outline: none;
-            box-shadow: 0 0 0 2px rgba(74, 143, 231, 0.2);
+            border-color: #4a8fe7;
         }
         
-        .form-group.error input {
-            border-color: #e74c3c;
-        }
-        
-        .error-message {
-            color: #e74c3c;
-            font-size: 14px;
-            margin-top: 5px;
-            display: none;
-        }
-        
-        .form-group.error .error-message {
-            display: block;
-        }
-        
-        .form-submit {
-            background-color: #4a8fe7;
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 500;
-            width: 100%;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-        }
-        
-        .form-submit:hover {
-            background-color: #3a7fd7;
-        }
-        
-        .form-footer {
-            text-align: center;
-            margin-top: 25px;
-            color: #666;
-            font-size: 15px;
-        }
-        
-        .form-footer a {
-            color: #4a8fe7;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
-        
-        .remember-forgot {
+        .form-options {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
         
-        .remember-me {
+        .form-options label {
             display: flex;
             align-items: center;
+            font-size: 14px;
+            color: #666;
         }
         
-        .remember-me input {
+        .form-options input {
             margin-right: 8px;
         }
         
@@ -248,222 +150,111 @@
             text-decoration: underline;
         }
         
-        .social-login {
-            margin-bottom: 25px;
-        }
-        
-        .social-title {
-            text-align: center;
-            margin-bottom: 15px;
-            color: #666;
-            position: relative;
-        }
-        
-        .social-title::before,
-        .social-title::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 80px;
-            height: 1px;
-            background-color: #ddd;
-        }
-        
-        .social-title::before {
-            left: 0;
-        }
-        
-        .social-title::after {
-            right: 0;
-        }
-        
-        .social-buttons {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-        }
-        
-        .social-button {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            background-color: white;
+        .btn-login {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4a8fe7, #3a7fd7);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
-        }
-        
-        .social-button:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .social-button i {
-            margin-right: 10px;
-            font-size: 20px;
-        }
-        
-        .facebook {
-            color: #3b5998;
-        }
-        
-        .google {
-            color: #db4437;
-        }
-        
-        .pet-images {
-            position: absolute;
-            z-index: -1;
-            opacity: 0.1;
-            width: 100%;
-            height: 100%;
+            position: relative;
             overflow: hidden;
-            top: 0;
-            left: 0;
         }
         
-        .pet-image {
-            position: absolute;
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(74, 143, 231, 0.3);
         }
         
-        .pet-image:nth-child(1) {
-            top: 10%;
-            left: 5%;
-            transform: rotate(-15deg);
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
         
-        .pet-image:nth-child(2) {
-            top: 60%;
-            left: 15%;
-            transform: rotate(10deg);
-        }
-        
-        .pet-image:nth-child(3) {
-            top: 20%;
-            right: 10%;
-            transform: rotate(5deg);
-        }
-        
-        .pet-image:nth-child(4) {
-            bottom: 15%;
-            right: 5%;
-            transform: rotate(-5deg);
-        }
-        
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 30px 0;
-            margin-top: auto;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-        }
-        
-        .footer-section {
-            flex: 1;
-            margin-right: 30px;
-        }
-        
-        .footer-section h3 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #4a8fe7;
-        }
-        
-        .footer-section p {
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: #ccc;
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section ul li {
-            margin-bottom: 8px;
-        }
-        
-        .footer-section ul li a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-        
-        .footer-section ul li a:hover {
-            color: #4a8fe7;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .social-icons a {
-            color: white;
-            background-color: #444;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
+        .loading {
+            display: none;
             align-items: center;
-            transition: background-color 0.3s;
+            gap: 10px;
         }
         
-        .social-icons a:hover {
-            background-color: #4a8fe7;
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5e9;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .form-footer a {
+            color: #4a8fe7;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
         }
         
         @media (max-width: 768px) {
             .main-container {
-                flex-direction: column;
                 padding: 20px;
             }
             
-            .left-section {
-                padding-right: 0;
-                margin-bottom: 40px;
+            .login-form-container {
+                padding: 30px 20px;
             }
             
-            .login-form {
-                max-width: 100%;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-            }
-            
-            .footer-section {
-                margin-right: 0;
-                margin-bottom: 30px;
+            .nav-links {
+                display: none;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
-    <div class="pet-images">
-        <div class="pet-image"><i class="fas fa-dog fa-5x"></i></div>
-        <div class="pet-image"><i class="fas fa-cat fa-5x"></i></div>
-        <div class="pet-image"><i class="fas fa-paw fa-5x"></i></div>
-        <div class="pet-image"><i class="fas fa-bone fa-5x"></i></div>
-    </div>
-    
     <nav>
         <a href="pet-social-signup.html" class="logo">
             <i class="fas fa-paw"></i>
-            PetSocial
+            PetConnect
         </a>
         <div class="nav-links">
             <a href="#" onclick="alert('Página em desenvolvimento!')">Sobre nós</a>
@@ -473,145 +264,141 @@
     </nav>
     
     <div class="main-container">
-        <div class="left-section">
-            <h1 class="app-title">Bem-vindo de volta!</h1>
-            <p class="app-description">Entre na sua conta para continuar compartilhando momentos especiais com seu pet e conectar-se com outros amantes de animais.</p>
-            
-            <div class="features">
-                <div class="feature">
-                    <i class="fas fa-camera"></i>
-                    <div class="feature-text">Compartilhe fotos e vídeos do dia a dia do seu pet</div>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-users"></i>
-                    <div class="feature-text">Conecte-se com outros tutores de pets</div>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-heart"></i>
-                    <div class="feature-text">Ajude a encontrar um novo lar para pets que precisam de adoção</div>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-comment"></i>
-                    <div class="feature-text">Troque dicas e experiências sobre cuidados com pets</div>
-                </div>
+        <div class="login-form-container">
+            <div class="form-header">
+                <h2>Bem-vindo de volta! 🐾</h2>
+                <p>Entre na sua conta para continuar</p>
             </div>
-        </div>
-        
-        <div class="right-section">
-            <div class="login-form">
-                <h2 class="form-title">Entrar na sua conta</h2>
+            
+            <div class="error-message" id="error-message"></div>
+            <div class="success-message" id="success-message"></div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required placeholder="seu@email.com">
+                </div>
                 
-                <div class="social-login">
-                    <div class="social-title">Entrar com</div>
-                    <div class="social-buttons">
-                        <div class="social-button facebook">
-                            <i class="fab fa-facebook-f"></i>
-                            <span>Facebook</span>
-                        </div>
-                        <div class="social-button google">
-                            <i class="fab fa-google"></i>
-                            <span>Google</span>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" required placeholder="Digite sua senha">
                 </div>
-                <div class="social-title">Ou com seu email</div>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="username">Usuário ou Email</label>
-                        <input type="text" id="username" name="username" placeholder="Digite seu usuário ou email" required>
-                        <div class="error-message">Por favor, digite um usuário válido.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Senha</label>
-                        <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
-                        <div class="error-message">Por favor, digite sua senha.</div>
-                    </div>
-                    <div class="remember-forgot">
-                        <div class="remember-me">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">Lembrar-me</label>
-                        </div>
-                        <a href="#" class="forgot-password">Esqueceu a senha?</a>
-                    </div>
-                    <button type="button" class="form-submit" id="loginButton">Entrar</button>
-                </form>
-                <div class="form-footer">
-                    Não tem uma conta? <a href="pet-social-signup.html">Cadastre-se</a>
+                
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" id="remember">
+                        Lembrar-me
+                    </label>
+                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
                 </div>
+                
+                <button type="submit" class="btn-login" id="login-btn">
+                    <span class="btn-text">Entrar</span>
+                    <div class="loading" id="loading">
+                        <div class="spinner"></div>
+                        <span>Entrando...</span>
+                    </div>
+                </button>
+            </form>
+            
+            <div class="form-footer">
+                Não tem uma conta? <a href="pet-social-signup.html">Cadastre-se</a>
             </div>
         </div>
     </div>
-    <script>
-        // Função para processar o login e redirecionar para a página principal
-        document.getElementById('loginButton').addEventListener('click', function() {
-            // Obter valores dos campos
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+    
+    <script type="module">
+        import { signIn, getCurrentUser } from './js/supabaseClient.js';
+        import SUPABASE_CONFIG, { validateConfig } from './js/supabaseConfig.js';
+        
+        // Validar configuração
+        try {
+            validateConfig();
+        } catch (error) {
+            alert(error.message);
+            console.error(error.message);
+        }
+        
+        // Verificar se usuário já está logado
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const user = await getCurrentUser();
+                if (user) {
+                    window.location.href = 'pet-social-network.html';
+                }
+            } catch (error) {
+                console.log('Nenhum usuário logado');
+            }
+        });
+        
+        // Função de login
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
             
-            // Validação simples
-            if (username && password) {
-                // Em um sistema real, você faria uma verificação com o servidor aqui
-                // Para este exemplo, vamos apenas simular um login bem-sucedido
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('login-btn');
+            const loading = document.getElementById('loading');
+            const btnText = document.querySelector('.btn-text');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            
+            // Resetar mensagens
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            
+            // Mostrar loading
+            loginBtn.disabled = true;
+            btnText.style.display = 'none';
+            loading.style.display = 'flex';
+            
+            try {
+                const { data, error } = await signIn(email, password);
                 
-                // Armazenar informações do usuário na sessão
-                const userInfo = {
-                    username: username,
-                    name: "Usuário PetSocial",
-                    email: username.includes('@') ? username : username + '@petsocial.com',
-                    profilePic: "https://via.placeholder.com/150"
-                };
+                if (error) {
+                    throw error;
+                }
+                
+                // Login bem-sucedido
+                successMessage.textContent = 'Login realizado com sucesso! Redirecionando...';
+                successMessage.style.display = 'block';
                 
                 // Salvar na sessão
-                sessionStorage.setItem('currentUser', JSON.stringify(userInfo));
+                sessionStorage.setItem('currentUser', JSON.stringify(data.user));
                 
-                // Redirecionar para a página principal
-                window.location.href = 'pet-social-network.html';
-            } else {
-                // Mostrar mensagens de erro
-                if (!username) {
-                    document.getElementById('username').parentElement.classList.add('error');
+                // Redirecionar após 1.5 segundos
+                setTimeout(() => {
+                    window.location.href = 'pet-social-network.html';
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Erro no login:', error);
+                
+                let message = 'Ocorreu um erro ao fazer login.';
+                
+                if (error.message.includes('Invalid login credentials')) {
+                    message = 'Email ou senha incorretos.';
+                } else if (error.message.includes('Email not confirmed')) {
+                    message = 'Por favor, confirme seu email antes de fazer login.';
+                } else if (error.message.includes('Too many requests')) {
+                    message = 'Muitas tentativas. Tente novamente em alguns minutos.';
                 }
-                if (!password) {
-                    document.getElementById('password').parentElement.classList.add('error');
-                }
+                
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                
+            } finally {
+                // Esconder loading
+                loginBtn.disabled = false;
+                btnText.style.display = 'inline';
+                loading.style.display = 'none';
             }
         });
         
-        // Também permitir envio ao pressionar Enter
-        document.getElementById('loginForm').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.getElementById('loginButton').click();
-            }
-        });
-        
-        // Remover mensagens de erro quando o usuário começa a digitar
-        document.getElementById('username').addEventListener('input', function() {
-            this.parentElement.classList.remove('error');
-        });
-        
-        document.getElementById('password').addEventListener('input', function() {
-            this.parentElement.classList.remove('error');
-        });
-        
-        // Também redirecionar ao clicar nos botões de login social
-        document.querySelectorAll('.social-button').forEach(button => {
-            button.addEventListener('click', function() {
-                // Em um sistema real, você faria autenticação social aqui
-                // Para este exemplo, vamos apenas simular um login bem-sucedido
-                
-                const userInfo = {
-                    username: "usuario_social",
-                    name: "Usuário Social",
-                    email: "usuario@social.com",
-                    profilePic: "https://via.placeholder.com/150"
-                };
-                
-                // Salvar na sessão
-                sessionStorage.setItem('currentUser', JSON.stringify(userInfo));
-                
-                // Redirecionar para a página principal
-                window.location.href = 'pet-social-network.html';
-            });
+        // Esqueceu a senha
+        document.querySelector('.forgot-password').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Funcionalidade de recuperação de senha em desenvolvimento. Entre em contato com o suporte.');
         });
     </script>
 </body>

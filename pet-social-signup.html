@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetSocial - Cadastre-se</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,21 +14,20 @@
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            background: linear-gradient(135deg, #4a8fe7 0%, #ff6b6b 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
         
         nav {
-            background-color: #4a8fe7;
+            background-color: rgba(255, 255, 255, 0.1);
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
         }
         
         .logo {
@@ -68,6 +68,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 20px;
+            gap: 40px;
         }
         
         .left-section {
@@ -75,7 +76,54 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-right: 40px;
+            color: white;
+        }
+        
+        .app-title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .app-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .feature i {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+        }
+        
+        .feature-text h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        
+        .feature-text p {
+            font-size: 14px;
+            opacity: 0.8;
         }
         
         .right-section {
@@ -85,425 +133,85 @@
             align-items: center;
         }
         
-        .app-title {
-            font-size: 36px;
-            font-weight: bold;
-            color: #4a8fe7;
-            margin-bottom: 20px;
-        }
-        
-        .app-description {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-        
-        .features {
-            margin-bottom: 30px;
-        }
-        
-        .feature {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .feature i {
-            width: 40px;
-            height: 40px;
-            background-color: #e6f0ff;
-            color: #4a8fe7;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            font-size: 18px;
-        }
-        
-        .feature-text {
-            font-size: 16px;
-            color: #444;
-        }
-        
-        .signup-form {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
+        .signup-form-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 500px;
             width: 100%;
-            max-width: 450px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .form-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #4a8fe7;
+        .form-header {
             text-align: center;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 30px;
         }
         
-        .form-group {
-            margin-bottom: 20px;
+        .form-header h2 {
+            color: #4a8fe7;
+            font-size: 28px;
+            margin-bottom: 10px;
         }
         
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #444;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus {
-            border-color: #4a8fe7;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(74, 143, 231, 0.2);
-        }
-        
-        .form-group.error input {
-            border-color: #e74c3c;
-        }
-        
-        .error-message {
-            color: #e74c3c;
+        .form-header p {
+            color: #666;
             font-size: 14px;
-            margin-top: 5px;
-            display: none;
         }
         
-        .form-group.error .error-message {
-            display: block;
-        }
-        
-        .form-submit {
-            background-color: #4a8fe7;
-            color: white;
-            border: none;
-            padding: 14px 20px;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 500;
-            width: 100%;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-        }
-        
-        .form-submit:hover {
-            background-color: #3a7fd7;
-        }
-        
-        .form-footer {
-            text-align: center;
-            margin-top: 25px;
-            color: #666;
-            font-size: 15px;
-        }
-        
-        .form-footer a {
-            color: #4a8fe7;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
-        
-        .pet-images {
-            position: absolute;
-            z-index: -1;
-            opacity: 0.1;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            top: 0;
-            left: 0;
-        }
-        
-        .pet-image {
-            position: absolute;
-        }
-        
-        .pet-image:nth-child(1) {
-            top: 10%;
-            left: 5%;
-            transform: rotate(-15deg);
-        }
-        
-        .pet-image:nth-child(2) {
-            top: 60%;
-            left: 15%;
-            transform: rotate(10deg);
-        }
-        
-        .pet-image:nth-child(3) {
-            top: 20%;
-            right: 10%;
-            transform: rotate(5deg);
-        }
-        
-        .pet-image:nth-child(4) {
-            bottom: 15%;
-            right: 5%;
-            transform: rotate(-5deg);
-        }
-        
-        .social-signup {
-            margin-bottom: 25px;
-        }
-        
-        .social-title {
-            text-align: center;
-            margin-bottom: 15px;
-            color: #666;
+        .steps-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
             position: relative;
         }
         
-        .social-title::before,
-        .social-title::after {
-            content: "";
+        .steps-indicator::before {
+            content: '';
             position: absolute;
-            top: 50%;
-            width: 80px;
-            height: 1px;
-            background-color: #ddd;
-        }
-        
-        .social-title::before {
-            left: 0;
-        }
-        
-        .social-title::after {
-            right: 0;
-        }
-        
-        .social-buttons {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-        }
-        
-        .social-button {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            background-color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .social-button:hover {
-            background-color: #f5f5f5;
-        }
-        
-        .social-button i {
-            margin-right: 10px;
-            font-size: 20px;
-        }
-        
-        .facebook {
-            color: #3b5998;
-        }
-        
-        .google {
-            color: #db4437;
-        }
-        
-        .terms {
-            font-size: 13px;
-            color: #777;
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .terms a {
-            color: #4a8fe7;
-            text-decoration: none;
-        }
-        
-        .terms a:hover {
-            text-decoration: underline;
-        }
-        
-        .pet-mascot {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            width: 150px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-            100% {
-                transform: translateY(0px);
-            }
-        }
-        
-        .step-indicator {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 25px;
+            top: 20px;
+            left: 30px;
+            right: 30px;
+            height: 2px;
+            background: #e1e5e9;
+            z-index: 0;
         }
         
         .step {
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 33.33%;
             position: relative;
-        }
-        
-        .step-number {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background-color: #ddd;
-            color: #666;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 600;
-            margin-bottom: 8px;
             z-index: 1;
         }
         
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e1e5e9;
+            color: #999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+        
         .step.active .step-number {
-            background-color: #4a8fe7;
+            background: #4a8fe7;
             color: white;
         }
         
         .step.completed .step-number {
-            background-color: #4CAF50;
+            background: #28a745;
             color: white;
         }
         
         .step-label {
-            font-size: 14px;
+            font-size: 12px;
             color: #666;
-            text-align: center;
-        }
-        
-        .step.active .step-label {
-            color: #4a8fe7;
-            font-weight: 500;
-        }
-        
-        .step.completed .step-label {
-            color: #4CAF50;
-        }
-        
-        .step-line {
-            position: absolute;
-            top: 15px;
-            height: 2px;
-            width: 100%;
-            background-color: #ddd;
-            left: 50%;
-        }
-        
-        .step:first-child .step-line {
-            display: none;
-        }
-        
-        .step.completed .step-line,
-        .step.active .step-line {
-            background-color: #4a8fe7;
-        }
-        
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 30px 0;
-            margin-top: auto;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-        }
-        
-        .footer-section {
-            flex: 1;
-            margin-right: 30px;
-        }
-        
-        .footer-section h3 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #4a8fe7;
-        }
-        
-        .footer-section p {
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: #ccc;
-        }
-        
-        .footer-section ul {
-            list-style: none;
-        }
-        
-        .footer-section ul li {
-            margin-bottom: 8px;
-        }
-        
-        .footer-section ul li a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-        
-        .footer-section ul li a:hover {
-            color: #4a8fe7;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .social-icons a {
-            color: white;
-            background-color: #444;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.3s;
-        }
-        
-        .social-icons a:hover {
-            background-color: #4a8fe7;
         }
         
         .form-steps {
@@ -514,51 +222,59 @@
             display: block;
         }
         
-        .steps-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
+        .form-group {
+            margin-bottom: 20px;
         }
         
-        .step-btn {
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 500;
-            font-size: 15px;
+            color: #333;
         }
         
-        .prev-btn {
-            background-color: #f5f5f5;
-            border: 1px solid #ddd;
-            color: #555;
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
         }
         
-        .next-btn {
-            background-color: #4a8fe7;
-            border: none;
-            color: white;
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4a8fe7;
         }
         
-        .prev-btn:hover {
-            background-color: #e5e5e5;
+        .form-group.error input {
+            border-color: #e74c3c;
         }
         
-        .next-btn:hover {
-            background-color: #3a7fd7;
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-group.error .error-message {
+            display: block;
         }
         
         .pet-type {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin-top: 10px;
+            margin-bottom: 20px;
         }
         
         .pet-option {
-            flex: 1;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 20px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
@@ -566,21 +282,18 @@
         
         .pet-option:hover {
             border-color: #4a8fe7;
+            background: #f0f7ff;
         }
         
         .pet-option.selected {
             border-color: #4a8fe7;
-            background-color: #f0f7ff;
+            background: #e6f0ff;
         }
         
         .pet-option i {
             font-size: 40px;
-            margin-bottom: 10px;
-            color: #666;
-        }
-        
-        .pet-option.selected i {
             color: #4a8fe7;
+            margin-bottom: 10px;
         }
         
         .pet-option h4 {
@@ -637,45 +350,145 @@
             display: none;
         }
         
+        .steps-nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .step-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .prev-btn {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .prev-btn:hover {
+            background: #5a6268;
+        }
+        
+        .next-btn {
+            background: #4a8fe7;
+            color: white;
+        }
+        
+        .next-btn:hover {
+            background: #3a7fd7;
+        }
+        
+        .form-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4a8fe7, #3a7fd7);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(74, 143, 231, 0.3);
+        }
+        
+        .form-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .loading {
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5e9;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .form-footer a {
+            color: #4a8fe7;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            background: #fee;
+            color: #c33;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .success-message {
+            background: #efe;
+            color: #3c3;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
         @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
                 padding: 20px;
+                gap: 30px;
             }
             
-            .left-section {
-                padding-right: 0;
-                margin-bottom: 40px;
+            .signup-form-container {
+                padding: 30px 20px;
             }
             
-            .signup-form {
-                max-width: 100%;
+            .pet-type {
+                grid-template-columns: 1fr;
             }
             
-            .pet-mascot {
+            .nav-links {
                 display: none;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-            }
-            
-            .footer-section {
-                margin-right: 0;
-                margin-bottom: 30px;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="pet-images">
-        <div class="pet-image"><i class="fas fa-dog fa-5x"></i></div>
-        <div class="pet-image"><i class="fas fa-cat fa-5x"></i></div>
-        <div class="pet-image"><i class="fas fa-paw fa-5x"></i></div>
-        <div class="pet-image"><i class="fas fa-bone fa-5x"></i></div>
-    </div>
-    
     <nav>
         <a href="pet-social-signup.html" class="logo">
             <i class="fas fa-paw"></i>
@@ -695,177 +508,182 @@
             
             <div class="features">
                 <div class="feature">
-                    <i class="fas fa-camera"></i>
-                    <div class="feature-text">Compartilhe fotos e vídeos do dia a dia do seu pet</div>
+                    <i class="fas fa-users"></i>
+                    <div class="feature-text">
+                        <h3>Conecte-se</h3>
+                        <p>Encontre outros tutores e compartilhe experiências</p>
+                    </div>
                 </div>
                 <div class="feature">
-                    <i class="fas fa-users"></i>
-                    <div class="feature-text">Conecte-se com outros tutores de pets</div>
+                    <i class="fas fa-camera"></i>
+                    <div class="feature-text">
+                        <h3>Compartilhe</h3>
+                        <p>Poste fotos e vídeos do seu pet</p>
+                    </div>
                 </div>
                 <div class="feature">
                     <i class="fas fa-heart"></i>
-                    <div class="feature-text">Ajude a encontrar um novo lar para pets que precisam de adoção</div>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-comment"></i>
-                    <div class="feature-text">Troque dicas e experiências sobre cuidados com pets</div>
+                    <div class="feature-text">
+                        <h3>Adote</h3>
+                        <p>Ajude pets a encontrarem um lar amoroso</p>
+                    </div>
                 </div>
             </div>
         </div>
         
         <div class="right-section">
-            <div class="signup-form">
-                <h2 class="form-title">Crie sua conta</h2>
+            <div class="signup-form-container">
+                <div class="form-header">
+                    <h2>Criar Conta</h2>
+                    <p>Junte-se à nossa comunidade de amantes de pets!</p>
+                </div>
                 
-                <div class="step-indicator">
-                    <div class="step active">
+                <div class="error-message" id="error-message"></div>
+                <div class="success-message" id="success-message"></div>
+                
+                <div class="steps-indicator">
+                    <div class="step active" id="step1-indicator">
                         <div class="step-number">1</div>
-                        <div class="step-line"></div>
-                        <div class="step-label">Informações Básicas</div>
+                        <div class="step-label">Dados</div>
                     </div>
-                    <div class="step">
+                    <div class="step" id="step2-indicator">
                         <div class="step-number">2</div>
-                        <div class="step-line"></div>
-                        <div class="step-label">Seu Pet</div>
+                        <div class="step-label">Pet</div>
                     </div>
-                    <div class="step">
+                    <div class="step" id="step3-indicator">
                         <div class="step-number">3</div>
-                        <div class="step-label">Confirmação</div>
+                        <div class="step-label">Finalizar</div>
                     </div>
                 </div>
                 
-                <div class="form-steps active" id="step1">
-                    <div class="social-signup">
-                        <div class="social-title">Cadastre-se com</div>
-                        <div class="social-buttons">
-                            <div class="social-button facebook">
-                                <i class="fab fa-facebook-f"></i>
-                                <span>Facebook</span>
+                <form id="signup-form">
+                    <!-- Etapa 1: Dados Pessoais -->
+                    <div class="form-steps active" id="step1">
+                        <div class="form-group">
+                            <label for="fullname">Nome Completo</label>
+                            <input type="text" id="fullname" required placeholder="Seu nome completo">
+                            <div class="error-message">Por favor, digite seu nome completo.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="username">Nome de Usuário</label>
+                            <input type="text" id="username" required placeholder="@seuusuario">
+                            <div class="error-message">Por favor, escolha um nome de usuário.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required placeholder="seu@email.com">
+                            <div class="error-message">Por favor, digite um email válido.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Senha</label>
+                            <input type="password" id="password" required placeholder="Crie uma senha forte">
+                            <div class="error-message">A senha deve ter pelo menos 8 caracteres.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">Confirmar senha</label>
+                            <input type="password" id="confirm-password" required placeholder="Confirme sua senha">
+                            <div class="error-message">As senhas não correspondem.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="profile-photo">Adicionar Foto</label>
+                            <div class="photo-upload" onclick="document.getElementById('profile-photo').click()">
+                                <div class="photo-preview" id="photo-preview">
+                                    <i class="fas fa-camera"></i>
+                                    <span>Clique para adicionar foto</span>
+                                </div>
                             </div>
-                            <div class="social-button google">
-                                <i class="fab fa-google"></i>
-                                <span>Google</span>
-                            </div>
+                            <input type="file" id="profile-photo" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
+                        </div>
+                        
+                        <div class="steps-nav">
+                            <button class="step-btn next-btn" onclick="nextStep(1)">Próximo</button>
                         </div>
                     </div>
                     
-                    <div class="social-title">Ou com seu email</div>
-                    
-                    <div class="form-group">
-                        <label for="fullname">Nome completo</label>
-                        <input type="text" id="fullname" placeholder="Digite seu nome completo">
-                        <div class="error-message">Por favor, digite seu nome completo.</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Digite seu email">
-                        <div class="error-message">Por favor, digite um email válido.</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Senha</label>
-                        <input type="password" id="password" placeholder="Crie uma senha forte">
-                        <div class="error-message">A senha deve ter pelo menos 8 caracteres.</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="confirm-password">Confirmar senha</label>
-                        <input type="password" id="confirm-password" placeholder="Confirme sua senha">
-                        <div class="error-message">As senhas não correspondem.</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="profile-photo">Adicionar Foto</label>
-                        <div class="photo-upload" onclick="document.getElementById('profile-photo').click()">
-                            <div class="photo-preview" id="photo-preview">
-                                <i class="fas fa-camera"></i>
-                                <span>Clique para adicionar foto</span>
+                    <!-- Etapa 2: Dados do Pet -->
+                    <div class="form-steps" id="step2">
+                        <div class="form-group">
+                            <label>Que tipo de pet você tem?</label>
+                            <div class="pet-type">
+                                <div class="pet-option" onclick="selectPet(this, 'dog')">
+                                    <i class="fas fa-dog"></i>
+                                    <h4>Cachorro</h4>
+                                    <p>O melhor amigo do homem</p>
+                                </div>
+                                <div class="pet-option" onclick="selectPet(this, 'cat')">
+                                    <i class="fas fa-cat"></i>
+                                    <h4>Gato</h4>
+                                    <p>Independente e amoroso</p>
+                                </div>
+                                <div class="pet-option" onclick="selectPet(this, 'bird')">
+                                    <i class="fas fa-dove"></i>
+                                    <h4>Pássaro</h4>
+                                    <p>Colorido e musical</p>
+                                </div>
+                                <div class="pet-option" onclick="selectPet(this, 'other')">
+                                    <i class="fas fa-paw"></i>
+                                    <h4>Outro</h4>
+                                    <p>Outro tipo de pet</p>
+                                </div>
                             </div>
                         </div>
-                        <input type="file" id="profile-photo" accept="image/*" style="display: none;" onchange="handlePhotoUpload(event)">
-                    </div>
-                    
-                    <div class="steps-nav">
-                        <button class="step-btn next-btn" onclick="nextStep(1)">Próximo</button>
-                    </div>
-                </div>
-                
-                <div class="form-steps" id="step2">
-                    <div class="form-group">
-                        <label>Que tipo de pet você tem?</label>
-                        <div class="pet-type">
-                            <div class="pet-option" onclick="selectPet(this, 'dog')">
-                                <i class="fas fa-dog"></i>
-                                <h4>Cachorro</h4>
-                                <p>Eu tenho um cão</p>
-                            </div>
-                            <div class="pet-option" onclick="selectPet(this, 'cat')">
-                                <i class="fas fa-cat"></i>
-                                <h4>Gato</h4>
-                                <p>Eu tenho um gato</p>
-                            </div>
-                            <div class="pet-option" onclick="selectPet(this, 'both')">
-                                <i class="fas fa-paw"></i>
-                                <h4>Ambos</h4>
-                                <p>Tenho os dois</p>
-                            </div>
+                        
+                        <div class="form-group">
+                            <label for="pet-name">Nome do Pet</label>
+                            <input type="text" id="pet-name" placeholder="Nome do seu pet">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pet-age">Idade</label>
+                            <input type="text" id="pet-age" placeholder="Ex: 2 anos">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="pet-breed">Raça</label>
+                            <input type="text" id="pet-breed" placeholder="Ex: Vira-lata">
+                        </div>
+                        
+                        <div class="steps-nav">
+                            <button class="step-btn prev-btn" onclick="prevStep(2)">Anterior</button>
+                            <button class="step-btn next-btn" onclick="nextStep(2)">Próximo</button>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="pet-name">Nome do seu pet</label>
-                        <input type="text" id="pet-name" placeholder="Como se chama seu pet?">
+                    <!-- Etapa 3: Finalizar -->
+                    <div class="form-steps" id="step3">
+                        <div class="form-group">
+                            <label for="location">Localização</label>
+                            <input type="text" id="location" placeholder="Sua cidade, estado">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bio">Biografia</label>
+                            <input type="text" id="bio" placeholder="Fale sobre você e seus pets...">
+                        </div>
+                        
+                        <div class="form-group" style="display: flex; align-items: center;">
+                            <input type="checkbox" id="terms" style="width: auto; margin-right: 10px;">
+                            <label for="terms" style="margin-bottom: 0;">Concordo com os <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a></label>
+                        </div>
+                        
+                        <button type="submit" class="form-submit" id="create-account-btn">
+                            <span class="btn-text">Criar minha conta</span>
+                            <div class="loading" id="loading">
+                                <div class="spinner"></div>
+                                <span>Criando conta...</span>
+                            </div>
+                        </button>
+                        
+                        <div class="steps-nav">
+                            <button class="step-btn prev-btn" onclick="prevStep(3)">Anterior</button>
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="pet-age">Idade do seu pet</label>
-                        <input type="text" id="pet-age" placeholder="Qual a idade do seu pet?">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="pet-breed">Raça do seu pet</label>
-                        <input type="text" id="pet-breed" placeholder="Qual a raça do seu pet?">
-                    </div>
-                    
-                    <div class="steps-nav">
-                        <button class="step-btn prev-btn" onclick="prevStep(2)">Voltar</button>
-                        <button class="step-btn next-btn" onclick="nextStep(2)">Próximo</button>
-                    </div>
-                </div>
-                
-                <div class="form-steps" id="step3">
-                    <div class="form-group">
-                        <label for="username">Nome de usuário</label>
-                        <input type="text" id="username" placeholder="Escolha um nome de usuário">
-                        <div class="error-message">Este nome de usuário já está em uso.</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="location">Localização</label>
-                        <input type="text" id="location" placeholder="Sua cidade e estado">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="bio">Sobre você</label>
-                        <input type="text" id="bio" placeholder="Conte um pouco sobre você e seu pet">
-                    </div>
-                    
-                    <div class="form-group" style="display: flex; align-items: center;">
-                        <input type="checkbox" id="terms" style="width: auto; margin-right: 10px;">
-                        <label for="terms" style="margin-bottom: 0;">Concordo com os <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a></label>
-                    </div>
-                    
-                    <button class="form-submit" id="create-account-btn">Criar minha conta</button>
-                    
-                    <div class="steps-nav">
-                        <button class="step-btn prev-btn" onclick="prevStep(3)">Voltar</button>
-                    </div>
-                </div>
-                
-                <div class="terms">
-                    Ao se cadastrar, você concorda com nossos <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>.
-                </div>
+                </form>
                 
                 <div class="form-footer">
                     Já tem uma conta? <a href="login.html">Entre aqui</a>
@@ -874,47 +692,22 @@
         </div>
     </div>
     
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>PetSocial</h3>
-                <p>A rede social para amantes de pets.</p>
-                <p>Compartilhe momentos, conecte-se com outros tutores e ajude pets a encontrarem um novo lar.</p>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Links Úteis</h3>
-                <ul>
-                    <li><a href="#">Sobre nós</a></li>
-                    <li><a href="#">Como funciona</a></li>
-                    <li><a href="#">Política de privacidade</a></li>
-                    <li><a href="#">Termos de uso</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Contato</h3>
-                <ul>
-                    <li><a href="#"><i class="fas fa-envelope"></i> contato@petsocial.com</a></li>
-                    <li><a href="#"><i class="fas fa-phone"></i> (11) 99999-9999</a></li>
-                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> São Paulo, SP - Brasil</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-    
-    <script>
-        // Variável global para armazenar a foto em base64
-        let profilePhotoBase64 = '';
+    <script type="module">
+        import { signUp, uploadImage } from './js/supabaseClient.js';
+        import SUPABASE_CONFIG, { validateConfig } from './js/supabaseConfig.js';
         
-        // Função para lidar com o upload de foto
+        // Variável global para armazenar a foto
+        let profilePhotoFile = null;
+        
+        // Validar configuração
+        try {
+            validateConfig();
+        } catch (error) {
+            alert(error.message);
+            console.error(error.message);
+        }
+        
+        // Função para lidar com upload de foto
         function handlePhotoUpload(event) {
             const file = event.target.files[0];
             if (file) {
@@ -930,11 +723,12 @@
                     return;
                 }
                 
+                profilePhotoFile = file;
+                
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    profilePhotoBase64 = e.target.result;
                     const preview = document.getElementById('photo-preview');
-                    preview.innerHTML = `<img src="${profilePhotoBase64}" alt="Foto de perfil">`;
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Foto de perfil">`;
                     preview.classList.add('has-image');
                 };
                 reader.readAsDataURL(file);
@@ -952,7 +746,7 @@
             return password.length >= 8;
         }
         
-        // Função para mostrar erro em um campo
+        // Função para mostrar erro
         function showError(fieldId, message) {
             const field = document.getElementById(fieldId);
             const formGroup = field.parentElement;
@@ -963,16 +757,15 @@
             }
         }
         
-        // Função para limpar erro de um campo
+        // Função para limpar erro
         function clearError(fieldId) {
             const field = document.getElementById(fieldId);
             const formGroup = field.parentElement;
             formGroup.classList.remove('error');
         }
         
-        // Função para navegar entre as etapas do formulário
+        // Navegação entre etapas
         function nextStep(currentStep) {
-            // Validação básica antes de avançar
             if (currentStep === 1) {
                 const fullname = document.getElementById('fullname').value.trim();
                 const email = document.getElementById('email').value.trim();
@@ -1023,81 +816,40 @@
                     hasError = true;
                 }
                 
-                if (hasError) {
-                    return;
-                }
+                if (hasError) return;
             }
             
-            document.getElementById("step" + currentStep).classList.remove("active");
-            document.getElementById("step" + (currentStep + 1)).classList.add("active");
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${currentStep + 1}`).classList.add('active');
             
-            // Atualizar indicadores de etapa
-            document.querySelectorAll('.step')[currentStep - 1].classList.remove("active");
-            document.querySelectorAll('.step')[currentStep - 1].classList.add("completed");
-            document.querySelectorAll('.step')[currentStep].classList.add("active");
+            // Atualizar indicadores
+            document.getElementById(`step${currentStep}-indicator`).classList.remove('active');
+            document.getElementById(`step${currentStep}-indicator`).classList.add('completed');
+            document.getElementById(`step${currentStep + 1}-indicator`).classList.add('active');
         }
         
         function prevStep(currentStep) {
-            document.getElementById("step" + currentStep).classList.remove("active");
-            document.getElementById("step" + (currentStep - 1)).classList.add("active");
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            document.getElementById(`step${currentStep - 1}`).classList.add('active');
             
-            // Atualizar indicadores de etapa
-            document.querySelectorAll('.step')[currentStep - 1].classList.remove("active");
-            document.querySelectorAll('.step')[currentStep - 2].classList.remove("completed");
-            document.querySelectorAll('.step')[currentStep - 2].classList.add("active");
+            // Atualizar indicadores
+            document.getElementById(`step${currentStep}-indicator`).classList.remove('active');
+            document.getElementById(`step${currentStep - 1}-indicator`).classList.remove('completed');
+            document.getElementById(`step${currentStep - 1}-indicator`).classList.add('active');
         }
         
-        // Função para selecionar tipo de pet
+        // Selecionar tipo de pet
         function selectPet(element, type) {
-            // Remover seleção atual
             document.querySelectorAll('.pet-option').forEach(option => {
                 option.classList.remove('selected');
             });
-            
-            // Adicionar seleção ao elemento clicado
             element.classList.add('selected');
             element.setAttribute('data-type', type);
         }
         
-        // Função para salvar usuário no localStorage
-        function saveUserToLocalStorage(userData) {
-            try {
-                // Obter usuários existentes ou iniciar um array vazio
-                const existingUsers = JSON.parse(localStorage.getItem('petSocialUsers')) || [];
-                
-                // Verificar se o email ou username já existem
-                const emailExists = existingUsers.some(user => user.email === userData.email);
-                const usernameExists = existingUsers.some(user => user.username === userData.username);
-                
-                if (emailExists) {
-                    throw new Error('Este email já está cadastrado.');
-                }
-                
-                if (usernameExists) {
-                    throw new Error('Este nome de usuário já está em uso.');
-                }
-                
-                // Adicionar novo usuário
-                userData.id = Date.now().toString(); // ID único baseado no timestamp
-                userData.createdAt = new Date().toISOString();
-                existingUsers.push(userData);
-                
-                // Salvar no localStorage
-                localStorage.setItem('petSocialUsers', JSON.stringify(existingUsers));
-                
-                // Salvar usuário atual na sessão
-                sessionStorage.setItem('currentUser', JSON.stringify(userData));
-                
-                return true;
-            } catch (error) {
-                console.error('Erro ao salvar usuário:', error);
-                throw error;
-            }
-        }
-        
-        // Função para lidar com o envio do formulário
-        function handleSignup(event) {
-            if (event) event.preventDefault();
+        // Cadastro
+        document.getElementById('signup-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
             
             // Verificar se o usuário concordou com os termos
             if (!document.getElementById('terms').checked) {
@@ -1105,87 +857,84 @@
                 return;
             }
             
-            // Validar campos obrigatórios da etapa 3
-            const username = document.getElementById('username').value.trim();
-            const location = document.getElementById('location').value.trim();
+            const submitBtn = document.getElementById('create-account-btn');
+            const loading = document.getElementById('loading');
+            const btnText = document.querySelector('.btn-text');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
             
-            let hasError = false;
+            // Resetar mensagens
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
             
-            // Limpar erros anteriores
-            clearError('username');
-            
-            // Validar username
-            if (!username) {
-                showError('username', 'Por favor, escolha um nome de usuário.');
-                hasError = true;
-            } else if (username.length < 3) {
-                showError('username', 'O nome de usuário deve ter pelo menos 3 caracteres.');
-                hasError = true;
-            }
-            
-            if (hasError) {
-                return;
-            }
-            
-            // Coletar dados do formulário
-            const userData = {
-                fullName: document.getElementById('fullname').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                password: document.getElementById('password').value,
-                username: username,
-                location: location,
-                bio: document.getElementById('bio').value.trim(),
-                petType: document.querySelector('.pet-option.selected') ? 
-                        document.querySelector('.pet-option.selected').getAttribute('data-type') : '',
-                petName: document.getElementById('pet-name').value.trim(),
-                petAge: document.getElementById('pet-age').value.trim(),
-                petBreed: document.getElementById('pet-breed').value.trim(),
-                profilePhoto: profilePhotoBase64
-            };
+            // Mostrar loading
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            loading.style.display = 'flex';
             
             try {
-                // Salvar usuário no localStorage
-                saveUserToLocalStorage(userData);
+                const userData = {
+                    username: document.getElementById('username').value.trim(),
+                    full_name: document.getElementById('fullname').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    password: document.getElementById('password').value,
+                    location: document.getElementById('location').value.trim(),
+                    bio: document.getElementById('bio').value.trim(),
+                    pet_type: document.querySelector('.pet-option.selected')?.getAttribute('data-type') || '',
+                    pet_name: document.getElementById('pet-name').value.trim(),
+                    pet_age: document.getElementById('pet-age').value.trim(),
+                    pet_breed: document.getElementById('pet-breed').value.trim()
+                };
                 
-                alert('Conta criada com sucesso! Redirecionando para a rede social...');
+                // Upload da foto se existir
+                if (profilePhotoFile) {
+                    userData.avatar_url = await uploadImage(profilePhotoFile, 'avatars');
+                }
                 
-                // Redirecionar para a página da rede social após o cadastro bem-sucedido
+                const { data, error } = await signUp(userData.email, userData.password, userData);
+                
+                if (error) {
+                    throw error;
+                }
+                
+                // Sucesso
+                successMessage.textContent = 'Conta criada com sucesso! Redirecionando...';
+                successMessage.style.display = 'block';
+                
+                // Redirecionar após 2 segundos
                 setTimeout(() => {
-                    window.location.href = 'pet-social-network.html';
-                }, 1500);
+                    window.location.href = 'login.html';
+                }, 2000);
                 
             } catch (error) {
-                alert('Erro ao criar conta: ' + error.message);
-            }
-        }
-        
-        // Adicionar event listener para o botão de criar conta
-        document.addEventListener('DOMContentLoaded', function() {
-            const createAccountBtn = document.getElementById('create-account-btn');
-            if (createAccountBtn) {
-                createAccountBtn.addEventListener('click', handleSignup);
-            }
-            
-            // Adicionar validação em tempo real
-            document.getElementById('email').addEventListener('blur', function() {
-                const email = this.value.trim();
-                if (email && !validateEmail(email)) {
-                    showError('email', 'Por favor, digite um email válido.');
-                } else {
-                    clearError('email');
+                console.error('Erro no cadastro:', error);
+                
+                let message = 'Ocorreu um erro ao criar sua conta.';
+                
+                if (error.message.includes('User already registered')) {
+                    message = 'Este email já está cadastrado.';
+                } else if (error.message.includes('duplicate key')) {
+                    message = 'Este nome de usuário já está em uso.';
+                } else if (error.message.includes('Password should be at least')) {
+                    message = 'A senha deve ter pelo menos 6 caracteres.';
                 }
-            });
-            
-            document.getElementById('confirm-password').addEventListener('blur', function() {
-                const password = document.getElementById('password').value;
-                const confirmPassword = this.value;
-                if (confirmPassword && password !== confirmPassword) {
-                    showError('confirm-password', 'As senhas não correspondem.');
-                } else {
-                    clearError('confirm-password');
-                }
-            });
+                
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+                
+            } finally {
+                // Esconder loading
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                loading.style.display = 'none';
+            }
         });
+        
+        // Tornar funções globais para uso no HTML
+        window.handlePhotoUpload = handlePhotoUpload;
+        window.nextStep = nextStep;
+        window.prevStep = prevStep;
+        window.selectPet = selectPet;
     </script>
 </body>
 </html>
