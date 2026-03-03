@@ -1,0 +1,114 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "pages/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "assets/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable",
+        "X-Content-Type-Options": "nosniff"
+      }
+    },
+    {
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|ico|svg|webp|mp4|webm|woff|woff2|ttf|eot))",
+      "headers": {
+        "Cache-Control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1",
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/pages/pet-social-signup.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/pages/login.html"
+    },
+    {
+      "source": "/signup",
+      "destination": "/pages/pet-social-signup.html"
+    },
+    {
+      "source": "/feed",
+      "destination": "/pages/pet-social-network.html"
+    },
+    {
+      "source": "/profile",
+      "destination": "/pages/petsocial-meu-perfil.html"
+    },
+    {
+      "source": "/forgot-password",
+      "destination": "/pages/forgot-password.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/pages/$1.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    },
+    {
+      "source": "/pages/(.*\\.(js|css))",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/javascript"
+        }
+      ]
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "functions": {
+    "pages/api/**/*.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "framework": null,
+  "outputDirectory": null,
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "env": {
+    "NODE_VERSION": "20"
+  }
+}

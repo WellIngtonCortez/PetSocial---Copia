@@ -2,14 +2,21 @@
   "name": "petsocial",
   "version": "1.0.0",
   "description": "Rede social completa para amantes de pets com Supabase",
-  "main": "pet-social-network.html",
+  "main": "pages/pet-social-network.html",
+  "type": "module",
   "scripts": {
-    "start": "python -m http.server 8000",
-    "dev": "python -m http.server 8000",
-    "build": "echo 'Build completed - Static files ready for deploy'",
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo '✅ Build completed - Static files ready for deploy'",
+    "build:check": "echo '🔍 Checking build compatibility...' && npm ls --depth=0",
     "deploy": "vercel --prod",
-    "serve": "npx serve .",
-    "live": "npx live-server --port=8000"
+    "deploy:preview": "vercel",
+    "serve": "npx serve . --single",
+    "live": "npx live-server --port=8000 --entry-file=pages/pet-social-signup.html",
+    "clean": "rimraf node_modules package-lock.json",
+    "fresh": "npm run clean && npm install",
+    "lint": "echo '🔍 Linting package.json...' && npm ls --depth=0",
+    "test": "echo '🧪 Running basic tests...' && npm run build:check"
   },
   "keywords": [
     "pets",
@@ -19,7 +26,9 @@
     "html",
     "css",
     "adoption",
-    "pets"
+    "pets",
+    "static-site",
+    "vercel"
   ],
   "author": "PetSocial Team",
   "license": "MIT",
@@ -32,16 +41,26 @@
   },
   "homepage": "https://github.com/SEU-USERNAME/petsocial#readme",
   "engines": {
-    "node": ">=14.0.0"
+    "node": "20.x",
+    "npm": ">=9.0.0"
   },
   "devDependencies": {
     "live-server": "^1.2.2",
-    "serve": "^14.2.1"
+    "serve": "^14.2.1",
+    "rimraf": "^5.0.5",
+    "vercel": "^32.7.2"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "volta": {
+    "node": "20.11.0",
+    "npm": "10.2.4"
+  }
 }
