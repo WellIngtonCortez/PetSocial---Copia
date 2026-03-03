@@ -3,10 +3,10 @@
 
 const SUPABASE_CONFIG = {
     // URL do seu projeto Supabase
-    URL: 'https://SEU-PROJETO-ID.supabase.co',
+    URL: 'https://ftlgfaraeflseuafznnh.supabase.co',
     
     // Chave anônima do seu projeto Supabase
-    ANON_KEY: 'SUA-ANON-KEY-AQUI',
+    ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ0bGdmYXJhZWZsc2V1YWZ6bm5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzAxNzEzNjMsImV4cCI6MjA4NTc0NzM2M30.fVjkybYuOMHDUUHI2_913tJDyMJ4tPUVMuFXJoQuMvs',
     
     // Configurações do Storage
     STORAGE: {
