@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PetSocial - Cadastre-se</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <style>
         * {
             margin: 0;
@@ -489,17 +490,7 @@
     </style>
 </head>
 <body>
-    <nav>
-        <a href="pet-social-signup.html" class="logo">
-            <i class="fas fa-paw"></i>
-            PetSocial
-        </a>
-        <div class="nav-links">
-            <a href="#" onclick="alert('Página em desenvolvimento!')">Sobre nós</a>
-            <a href="#" onclick="alert('Página em desenvolvimento!')">Contato</a>
-            <a href="login.html">Entrar</a>
-        </div>
-    </nav>
+    <div id="navbar"></div>
     
     <div class="main-container">
         <div class="left-section">
@@ -693,8 +684,8 @@
     </div>
     
     <script type="module">
-        import { signUp, uploadImage } from '../js/supabaseClient.js';
-        import SUPABASE_CONFIG, { validateConfig } from '../js/supabaseConfig.js';
+        import { signUp, uploadImage } from '../assets/js/supabaseClient.js';
+        import SUPABASE_CONFIG, { validateConfig } from '../assets/js/supabaseConfig.js';
         
         // Variável global para armazenar a foto
         let profilePhotoFile = null;
@@ -935,6 +926,11 @@
         window.nextStep = nextStep;
         window.prevStep = prevStep;
         window.selectPet = selectPet;
+        
+        // Inicializar navbar
+        import('../assets/js/navbar.js').then(() => {
+            // Navbar já foi inicializado automaticamente
+        });
     </script>
 </body>
 </html>
