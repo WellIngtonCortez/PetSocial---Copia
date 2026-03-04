@@ -1,0 +1,88 @@
+// 📝 CONFIGURAÇÃO TYPESCRIPT - PET SOCIAL
+// tsconfig.json para projeto Next.js/Vercel com Supabase
+
+{
+  "compilerOptions": {
+    // 🔧 Configurações Básicas
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    
+    // 🏗️ Configurações Next.js
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    
+    // 🎯 Strict Mode (melhor qualidade)
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    
+    // 📁 Paths (aliases para import limpo)
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/lib/*": ["./src/lib/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/utils/*": ["./src/utils/*"]
+    },
+    
+    // 🌐 Configurações de Módulo
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "typeRoots": ["./node_modules/@types", "./types"],
+    
+    // 🚀 Performance
+    "incremental": true,
+    "tsBuildInfoFile": ".next/cache/tsbuildinfo.json"
+  },
+  
+  // 📂 Arquivos a incluir
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "types/**/*.ts"
+  ],
+  
+  // 📂 Arquivos a excluir
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out",
+    "dist",
+    "build",
+    ".vercel",
+    "coverage",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
+  ],
+  
+  // 🧪 Testes (se usar Jest)
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
+}
